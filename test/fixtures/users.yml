@@ -1,1 +1,4 @@
-# making it empty per tutorial
+rails:
+  name: Rails Tutorial
+  email: example@railstutorial.org
+  password_digest: <%= User.digest('rails@123') %>
