@@ -1,5 +1,5 @@
 rails:
-  name: Rails Tutorial
+  name: Vijay Ganesh
   email: example@railstutorial.org
   password_digest: <%= User.digest('rails@123') %>
   admin: true
