@@ -27,7 +27,7 @@ class PollsController < ApplicationController
     if current_user && params[:poll] && params[:poll][:id] && params[:vote_option] && params[:vote_option][:id]
       @poll = Poll.find_by_id(params[:poll][:id])
       @answer = params[:vote_option][:id]
-      if @answer && @poll && !current_user.voted_for?(@poll)
+      if @answer && @poll && !current_user.voted_for?(@poll) && !poll.deleted?
         @poll.vote(@answer)
         @poll.votes.create({user_id: current_user.id})
         @poll.save
