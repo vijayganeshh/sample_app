@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
                                    foreign_key: "followed_id",
                                    dependent:   :destroy
   has_many :following, through: :active_relationships,  source: :followed
-  has_many :followers, through: :passive_relationships, source: :follower                               
+  has_many :followers, through: :passive_relationships, source: :follower                            
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
   before_create :create_activation_digest
@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
 					  uniqueness: { case_sensitive: false}
 	has_secure_password
 	validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  has_many :votes, dependent: :destroy
+  has_many :polls
 
 	# Returns the hash digest of the given string.
   def User.digest(string)
@@ -98,6 +100,25 @@ class User < ActiveRecord::Base
   # Returns true if the current user is following the other user.
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  # Returns a user's polls feed
+  def polls_feed
+    following_ids = "SELECT followed_id FROM relationships
+                     WHERE  follower_id = :user_id"
+    Poll.where("user_id IN (#{following_ids})", user_id: id)
+  end
+
+  def my_poll?(poll)
+    polls.exists?(id: poll.id)
+  end
+
+  def voted_for?(poll)
+    votes.exists?(poll_id: poll.id)
+  end
+
+  def deleted?
+    self.deleted_at.present?
   end
 
   private

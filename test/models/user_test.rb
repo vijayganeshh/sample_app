@@ -97,4 +97,14 @@ class UserTest < ActiveSupport::TestCase
       assert_not michael.feed.include?(post_unfollowed)
     end
   end
+
+  # for polls
+  test "associated polls should be destroyed" do
+    @user.save
+    @user.polls.create!(topic: "random poll")
+    assert_difference 'Poll.count', -1 do
+      @user.destroy
+    end
+  end
+
 end
