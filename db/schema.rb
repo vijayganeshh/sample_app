@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160615120535) do
+ActiveRecord::Schema.define(version: 20160615115722) do
 
   create_table "microposts", force: :cascade do |t|
     t.text     "content"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20160615120535) do
     t.integer  "yes"
     t.integer  "no"
     t.time     "deleted_at"
+    t.time     "delete_at"
   end
 
   add_index "polls", ["user_id", "created_at"], name: "index_polls_on_user_id_and_created_at"
