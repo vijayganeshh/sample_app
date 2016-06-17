@@ -9,7 +9,7 @@
 		    <div class="col-md-2"><%= submit_tag 'Vote', class: 'btn btn-sm btn-primary' %></div>
 		  <% end %>
 		  <div class="col-md-7">
-		  	<span class="vote-font"><%= poll.votes_summary %> votes</span>
+		  	<span class="vote-font"><%= poll.votes_summary == 0 ? "No" : poll.votes_summary %> <%= "vote".pluralize(poll.votes_summary) %></span>
 		  	<span>-</span>
 		  	<span class="vote-font">Posted <%= time_ago_in_words(poll.created_at) %> ago.</span>
 		  	</div>
@@ -18,7 +18,7 @@
 	<% else %>
 		<div class="row">
 			<div class="col-md-7">
-			  	<span class="vote-font"><%= poll.votes_summary %> votes</span>
+			  	<span class="vote-font"><%= poll.votes_summary == 0 ? "No" : poll.votes_summary %> <%= "vote".pluralize(poll.votes_summary) %></span>
 			  	<span id="result" class="vote-font"> - Final Results</span>
 		  	</div>
 			<div class="col-md-5"></div>
