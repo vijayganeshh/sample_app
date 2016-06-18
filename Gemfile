@@ -3,7 +3,19 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
-
+# Bootstrap file 
+gem 'bootstrap-sass', '3.2.0.0'
+# hash function
+gem 'bcrypt', '3.1.7'
+# sample users
+gem 'faker',  '1.4.2'
+# uploading images
+gem 'carrierwave',             '0.10.0'
+gem 'mini_magick',             '3.8.0'
+gem 'fog',                     '1.36.0'
+# pagination
+gem 'will_paginate',           '3.0.7'
+gem 'bootstrap-will_paginate', '0.0.10'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -49,6 +61,7 @@ end
 group :production do
   gem 'pg',             '0.17.1'
   gem 'rails_12factor', '0.0.2'
+    gem 'puma',           '3.1.0'
 end
 
 group :test do
