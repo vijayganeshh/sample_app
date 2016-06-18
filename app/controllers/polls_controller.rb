@@ -23,6 +23,7 @@ class PollsController < ApplicationController
     # end
   end
 
+  # vote action
   def vote
     if current_user && params[:poll] && params[:poll][:id] && params[:vote_option] && params[:vote_option][:id]
       @poll = Poll.find_by_id(params[:poll][:id])
